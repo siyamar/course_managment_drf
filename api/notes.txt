@@ -1,0 +1,1 @@
+After extracting: run `pip install -r requirements.txt` then `python manage.py migrate` to create DB tables.
