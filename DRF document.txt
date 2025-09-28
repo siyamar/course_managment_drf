@@ -1,0 +1,109 @@
+Django REST Framework (DRF) Cheat Sheet – Beginner
+1️⃣ Install & Setup
+pip install django djangorestframework
+django-admin startproject myproject
+cd myproject
+python manage.py startapp myapp
+
+
+Add to settings.py:
+
+INSTALLED_APPS = [
+    'rest_framework',
+    'myapp',
+]
+
+2️⃣ Create Model (myapp/models.py)
+from django.db import models
+
+class Item(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+3️⃣ Migrate Database
+python manage.py makemigrations
+python manage.py migrate
+
+4️⃣ Create Serializer (myapp/serializers.py)
+from rest_framework import serializers
+from .models import Item
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = '__all__'
+
+5️⃣ Create View (myapp/views.py)
+from rest_framework import viewsets
+from .models import Item
+from .serializers import ItemSerializer
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
+6️⃣ Setup URLs
+
+myapp/urls.py:
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ItemViewSet
+
+router = DefaultRouter()
+router.register('items', ItemViewSet)
+
+urlpatterns = [
+    path('', include(router.urls)),
+]
+
+
+myproject/urls.py:
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('myapp.urls')),
+]
+
+7️⃣ Run Server & Test
+python manage.py runserver
+
+
+Open browser / Postman:
+
+http://127.0.0.1:8000/api/items/
+
+
+GET → List items
+
+POST → Create item
+
+PUT/PATCH → Update item
+
+DELETE → Delete item
+
+8️⃣ Optional – Superuser
+python manage.py createsuperuser
+
+
+Admin panel: http://127.0.0.1:8000/admin/
+
+9️⃣ Interview Rules / Notes
+
+DRF = Django + REST API.
+
+Flow: Model → Serializer → View → URL → Test
+
+ModelViewSet = CRUD done automatically.
+
+Always migrate after changing models.
+
+Use Postman / browser to test APIs.
+
+Keep code small & readable.
