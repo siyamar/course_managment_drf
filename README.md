@@ -22,3 +22,6 @@ API endpoints:
 - GET/DELETE /api/courses/<id>/
 - POST /api/purchases/  (authenticated user buys a course)
 - GET /api/purchases/   (list authenticated user's purchases)
+
+#Django REST APIs with JWT(Hins):
+https://medium.com/django-unleashed/securing-django-rest-apis-with-jwt-authentication-using-simple-jwt-a-step-by-step-guide-28efa84666fe
