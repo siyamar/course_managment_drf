@@ -25,3 +25,5 @@ API endpoints:
 
 #Django REST APIs with JWT(Hins):
 https://medium.com/django-unleashed/securing-django-rest-apis-with-jwt-authentication-using-simple-jwt-a-step-by-step-guide-28efa84666fe
+
+https://medium.com/django-unleashed/complete-django-project-setup-a-comprehensive-guide-289182b75f3c
